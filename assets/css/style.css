@@ -3113,7 +3113,7 @@ button[type=submit] {
   }
 
   .logos figure img {
-    padding: 0 10%;
+    padding: 5% 10%;
   }
 
   .about-content {
@@ -3543,3 +3543,4 @@ button[type=submit] {
   display:flex;
   flex-direction: column;
 } */
+
