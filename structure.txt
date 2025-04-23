@@ -1,0 +1,34 @@
+Folder PATH listing for volume Windows 10
+Volume serial number is F07F-7F84
+C:.
+³   .gitignore
+³   favicon.ico
+³   index.html
+³   LICENSE
+³   more.html
+³   post-property.html
+³   profile.html
+³   property.html
+³   README.md
+³   services.html
+³   structure.txt
+³   
+ÀÄÄÄassets
+    ÃÄÄÄcss
+    ³       index.css
+    ³       more.css
+    ³       post-property.css
+    ³       profile.css
+    ³       property.css
+    ³       services.css
+    ³       
+    ÃÄÄÄfonts
+    ÃÄÄÄimages
+    ÀÄÄÄjs
+            index.js
+            more.js
+            post-property.js
+            profile.js
+            property.js
+            services.js
+            

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DINSO - Animated Navigation</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Add right after opening body tag -->
+    <div class="overlay"></div>
+
+    <header class="header animate-fade" data-animate-delay="0s">
+        <div class="logo-section">
+            <div class="cross-section"></div>
+            <div class="logo">
+                <img src="assets/images/logo/Sankalp Logo Igatpuri-01.png" alt="Sankalp Landmark Logo" width="160">
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-container">
+            <div class="top-info">
+                <div class="hours">
+                    <span style="margin-right: 20px; font-weight: bold; font-size: 14px;"><i class="far fa-clock"></i> OPENING HOURS:</span>
+                    <span style="color: #888; font-size: 14px;">MON - SAT 9:00 AM TO 6:00 PM</span>
+                </div>
+                <button class="schedule-btn"> SCHEDULE A VISIT</button>
+            </div>
+            <div class="contact-info">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <div class="contact-item">
+                        <span class="contact-label">With us : </span>
+                        <span class="contact-value"><a href="mailto:enquiry@sankalplandmark.com">enquiry@sankalplandmark.com</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Contact Us : </span>
+                        <span class="contact-value"><a href="tel: +91 8007751751">+91-8007751751</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Visit Us : </span>
+                        <span class="contact-value"><a href="#">Shreeji The Status, Nashik, Maharashtra, India</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-social-container">
+                <div class="social-icons">
+                    <i class="fab fa-twitter social-icon"></i>
+                    <i class="fab fa-facebook-f social-icon"></i>
+                    <i class="fab fa-instagram social-icon"></i>
+                    <i class="fab fa-linkedin-in social-icon"></i>
+                </div>
+                <nav class="nav-menu">
+                    <div class="nav-item">
+                        <i class="fas fa-home"></i> HOME
+                    </div>
+                    <div class="nav-item">
+                        PROFILE
+                    </div>
+                    <div class="nav-item dropdown">
+                        OUR SERVICES
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">Builder and Developers</div>
+                            <div class="dropdown-item">Building Consultant</div>
+                            <div class="dropdown-item">Real Estate Consultant</div>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        PROPERTY
+                        </i>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">Property in Nashik</div>
+                            <div class="dropdown-item">Igatpuri & Nashik</div>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        POST PROPERTY
+                    </div>
+                    <div class="nav-item dropdown">
+                        MORE
+                        </i>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-item">Testimonial</div>
+                            <div class="dropdown-item">Contact Us</div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlay for mobile menu -->
+    <div class="overlay"></div>
+
+    <!-- Slider Section -->
+    <section class="slider-section animate-fade" data-animate-delay="0.1s">
+        <div class="slider-container">
+            <!-- Slide 1 -->
+            <div class="slide active" id="slide1">
+                <div class="slide-bg" style="background-image: url('assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0019.jpg');"></div>
+                <div class="slide-content">
+                    <div class="slide-tag">BEST LOCATION . CHEAP PRICE</div>
+                    <h1 class="slide-title">
+                        DISCOVER<br>
+                        MODERN<br>
+                        VILLA
+                    </h1>
+                    <a href="#" class="learn-more-btn">LEARN MORE</a>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide" id="slide2">
+                <div class="slide-bg" style="background-image: url('assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0017.jpg');"></div>
+                <div class="slide-content">
+                    <div class="slide-tag">PREMIUM QUALITY . GREAT VALUE</div>
+                    <h1 class="slide-title">
+                        ELEGANT<br>
+                        LIVING<br>
+                        SPACES
+                    </h1>
+                    <a href="#" class="learn-more-btn">VIEW DETAILS</a>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide" id="slide3">
+                <div class="slide-bg" style="background-image: url('assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0015.jpg');"></div>
+                <div class="slide-content">
+                    <div class="slide-tag">LUXURY STYLE . AFFORDABLE PRICE</div>
+                    <h1 class="slide-title">
+                        EXCLUSIVE<br>
+                        PROPERTY<br>
+                        DEALS
+                    </h1>
+                    <a href="#" class="learn-more-btn">EXPLORE NOW</a>
+                </div>
+            </div>
+            
+            <!-- Slider Controls -->
+            <div class="slider-controls">
+                <div class="control active" data-slide="slide1"></div>
+                <div class="control" data-slide="slide2"></div>
+                <div class="control" data-slide="slide3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- about us section -->
+    <!-- About Us Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-image-container">
+                        <div class="about-image position-relative">
+                            <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0008.jpg" alt="Modern Villa Interior" onerror="this.src='/api/placeholder/600/400'"/>
+                            <div class="cta-overlay">GET YOUR NEW HOME</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-text-container">
+                        <div class="section-tag">VILLA OVERVIEW</div>
+                        <h2 class="section-title">ABOUT DINSO VILLA</h2>
+                        <p class="section-description">
+                            <strong>Sankalp Landmark</strong> is a team of professionals with faith in their abilities and points of view on qualities necessary to lead the organization to greatness. With 20 years of experience in real estate, Sankalp Landmark is one of the best builders in Nashik (Maharashtra).
+                        </p>
+                        <p class="section-description">
+                            The company has established itself as a name of unquestionable faith. From the beginning, we left no rock unturned in delivering our projects with utmost care and precision. We believe that the driving factor of our success is the trust our clients have put in us.
+                        </p>
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="feature-text">Premium quality construction materials</div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="feature-text">Strategic location with beautiful surroundings</div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="feature-text">Modern architecture with elegant design</div>
+                            </li>
+                            <li class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="feature-text">Excellent amenities for comfortable living</div>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn-learn-more">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>
