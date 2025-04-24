@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#282828"/>
-<title>Sankalp | Real Estate & Luxury Homes</title>
+<title>Our Team | Sankalp Landmark</title>
 <meta name="author" content="KunalPatil">
-<meta name="description" content="Sankalp | Real Estate & Luxury Homes">
-<meta name="keywords" content="sankalp, realestate, flat, apartment, benefits, facility, consultation, home, house, studio, pool, animation, transportation">
+<meta name="description" content="Meet the dedicated team behind Sankalp Landmark's success">
+<meta name="keywords" content="sankalp, realestate, team, leadership, management, flat, apartment, benefits, facility, consultation, home, house, studio, pool, animation, transportation">
 
 <!-- SOCIAL MEDIA META -->
-<meta property="og:description" content="Sankalp | Real Estate & Luxury Homes">
+<meta property="og:description" content="Meet the dedicated team behind Sankalp Landmark's success">
 <meta property="og:image" content=".png">
 <meta property="og:site_name" content="sankalp">
-<meta property="og:title" content="sankalp">
+<meta property="og:title" content="Our Team | Sankalp Landmark">
 <meta property="og:type" content="website">
 <meta property="og:url" content="">
 
@@ -22,8 +22,8 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@sankalp">
 <meta name="twitter:creator" content="@sankalp">
-<meta name="twitter:title" content="sankalp">
-<meta name="twitter:description" content="Sankalp | Real Estate & Luxury Homes">
+<meta name="twitter:title" content="Our Team | Sankalp Landmark">
+<meta name="twitter:description" content="Meet the dedicated team behind Sankalp Landmark's success">
 <meta name="twitter:image" content=".png">
 
 <!-- FAVICON FILES -->
@@ -36,7 +36,6 @@
 <!-- CSS FILES -->
 <!-- Font Awesome CDN (Latest) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 
 <!-- Animate.css -->
 <link rel="stylesheet" href="assets/css/animate.min.css">
@@ -53,8 +52,242 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
+<!-- AOS - Animate On Scroll -->
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 <!-- Custom Styles -->
 <link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Custom Team Page Styles -->
+<style>
+  .team-member {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  }
+  
+  .team-member img {
+    transition: all 0.6s ease;
+  }
+  
+  .team-member:hover img {
+    transform: scale(1.05);
+  }
+  
+  .team-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 30px 20px 20px;
+    color: #fff;
+    transform: translateY(100px);
+    transition: all 0.4s ease;
+  }
+  
+  .team-member:hover .team-info {
+    transform: translateY(0);
+  }
+  
+  .team-social {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+  }
+  
+  .team-member:hover .team-social {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .team-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.9);
+    color: #333;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .team-social a:hover {
+    background: #e74c3c;
+    color: #fff;
+    transform: scale(1.1);
+  }
+  
+  .team-stats {
+    background: #f9f9f9;
+    padding: 80px 0;
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+  }
+  
+  .stat-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  }
+  
+  .stat-icon {
+    font-size: 50px;
+    color: #e74c3c;
+    margin-bottom: 20px;
+  }
+  
+  .stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .stat-text {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .team-filter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .filter-btn {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #777;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .filter-btn:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #e74c3c;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-btn:hover, .filter-btn.active {
+    color: #e74c3c;
+  }
+  
+  .filter-btn:hover:after, .filter-btn.active:after {
+    width: 100%;
+  }
+  
+  .team-quote {
+    background: url('assets/images/quote-bg.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+    position: relative;
+  }
+  
+  .team-quote:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+  }
+  
+  .quote-content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .quote-icon {
+    font-size: 60px;
+    color: #e74c3c;
+    margin-bottom: 30px;
+  }
+  
+  .quote-text {
+    font-size: 24px;
+    font-style: italic;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  
+  .quote-author {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .team-join {
+    padding: 80px 0;
+    background: #f9f9f9;
+  }
+  
+  .join-content {
+    text-align: center;
+  }
+  
+  .join-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .join-text {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .join-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: #e74c3c;
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .join-btn:hover {
+    background: #c0392b;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+</style>
 
 </head>
 <body>
@@ -62,8 +295,7 @@
   <div class="layer"></div>
   <!-- end layer -->
   <div class="inner">
-    <figure><img src="assets/images/preloader.gif
-      " alt="Image"></figure>
+    <figure><img src="assets/images/preloader.gif" alt="Image"></figure>
     <p><span class="text-rotater" data-text="Sankalp | Elements | Loading">Loading</span></p>
   </div>
   <!-- end inner --> 
@@ -313,111 +545,117 @@
 <!-- end navbar -->
 <header class="page-header" data-background="assets/images/slide01.jpg" data-stellar-background-ratio="1.15">
   <div class="container">
-    <h1>Photo Gallery</h1>
-    <p>Like nature's design, every detail here contributes to something greater</p>
+    <h1>Our Team</h1>
+    <p>Meet the dedicated professionals behind Sankalp Landmark's success</p>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Start</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Photo Gallery</li>
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Our Story</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Our Team</li>
     </ol>
   </div>
   <!-- end container --> 
 </header>
 <!-- end page-header -->
-<section class="photo-gallery">
+<section class="sales-team">
   <div class="container">
     <div class="row">
-    	<div class="col-12">
-    	<ul class="gallery-filter">
-   			<li><a href="javascript:void(0);" data-filter="*" class="current">ALL</a></li>
-          	<li><a href="javascript:void(0);" data-filter=".projects">Projects</a></li>
-          	<li><a href="javascript:void(0);" data-filter=".villas">Villas</a></li>
-          	<li><a href="javascript:void(0);" data-filter=".layout-plans">Layout plans</a></li>
-   		</ul>
-    		<ul class="gallery">
-    			<!-- Projects -->
-    			<li class="projects">
-                    <a href="assets/images/Mountain-Bliss-Brochure-12x15in-4/slide01.jpg" data-fancybox>
-                        <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/slide01.jpg" alt="Project Image">
-                    </a>
-                </li>
-    			<li class="projects">
-                    <a href="assets/images/Beautiful-Bhavali-Brochure-12x15in-2/slide02.jpg" data-fancybox>
-                        <img src="assets/images/Beautiful-Bhavali-Brochure-12x15in-2/slide02.jpg" alt="Project Image">
-                    </a>
-                </li>
-    			<li class="projects">
-                    <a href="assets/images/sunscape/slide03.jpg" data-fancybox>
-                        <img src="assets/images/sunscape/slide03.jpg" alt="Project Image">
-                    </a>
-                </li>
-    			<!-- <li class="projects">
-                    <a href="https://via.placeholder.com/800x600?text=Project+4" data-fancybox>
-                        <img src="https://via.placeholder.com/400x300?text=Project+4" alt="Project Image">
-                    </a>
-                </li> -->
-    			
-    			<!-- Villas -->
-    			<!-- <li class="villas">
-                    <a href="assets/images/03.webp" data-fancybox>
-                        <img src="assets/images/03.webp" alt="Villa Image">
-                    </a>
-                </li> -->
-    			<li class="villas">
-                    <a href="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0017.jpg" data-fancybox>
-                        <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0017.jpg" alt="Villa Image">
-                    </a>
-                </li>
-    			<li class="villas">
-                    <a href="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0015.jpg" data-fancybox>
-                        <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0015.jpg" alt="Villa Image">
-                    </a>
-                </li>
-    		 <li class="villas">
-                    <a href="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0019.jpg" data-fancybox>
-                        <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0019.jpg" alt="Villa Image">
-                    </a>
-                </li>
-    			
-    			<!-- Layout plans -->
-    			<li class="layout-plans">
-                    <a href="" data-fancybox>
-                        <img src="assets/images/sunscape/Sunscape Brochure 12x15in-1_page-0010.jpg" alt="Layout Plan">
-                    </a>
-                </li>
-    			<li class="layout-plans">
-                    <a href="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0013.jpg" data-fancybox>
-                        <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0013.jpg" alt="Layout Plan">
-                    </a>
-                </li>
-    			<li class="layout-plans">
-                    <a href="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0025.jpg" data-fancybox>
-                        <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0025.jpg" alt="Layout Plan">
-                    </a>
-                </li>
-    			<li class="layout-plans">
-                    <a href="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0024.jpg" data-fancybox>
-                        <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0024.jpg" alt="Layout Plan">
-                    </a>
-                </li>
-    			<li class="layout-plans">
-                    <a href="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0021.jpg" data-fancybox>
-                        <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0021.jpg" alt="Layout Plan">
-                    </a>
-                </li>
-    			<li class="layout-plans">
-                    <a href="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0020.jpg" data-fancybox>
-                        <img src="assets/images/Mountain-Bliss-Brochure-12x15in-4/Mountain Bliss Brochure 12x15in-4_page-0020.jpg" alt="Layout Plan">
-                    </a>
-                </li>
-    		</ul>
-    	</div>
-    	<!-- end col-12 -->
+      <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+        <figure><img src="assets/images/team/Mr-Uttam-Shinde-removebg-preview.png" alt="Image">
+        <figcaption>
+        <h4><span>Mr. Uttam </span>Shinde</h4>
+        <small>Director</small>
+        <ul>
+          <li><a href="#"><i class="fab fa-linkedin-sin"></i>LINKEDIN</a></li>
+          <li><a href="#"><i class="fab fa-facebook-f"></i>FACEBOOK</a></li>
+        </ul>
+        </figcaption>
+        </figure>
+      </div>
+      <!-- end col-6 -->
+      <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+        <figure><img src="assets/images/team/Mr-Sankalp-Shinde-removebg-preview.png" alt="Image">
+        <figcaption>
+        <h4><span>Mr. Sankalp</span> Shinde</h4>
+        <small>Director</small>
+        <ul>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i>LINKEDIN</a></li>
+          <li><a href="#"><i class="fab fa-facebook-f"></i>FACEBOOK</a></li>
+        </ul>
+        </figcaption>
+        </figure>
+      </div>
+      <!-- end col-6 -->
+      <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
+        <figure><img src="assets/images/team/Dinkar-Shirsat.webp" alt="Image">
+        <figcaption>
+        <h4><span>Dinkar</span> Shirsat</h4>
+        <small>Accountant's Department Head</small>
+        <ul>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i>LINKEDIN</a></li>
+          <li><a href="#"><i class="fab fa-facebook-f"></i>FACEBOOK</a></li>
+        </ul>
+        </figcaption>
+        </figure>
+      </div>
+      <!-- end col-6 -->
+      <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
+        <figure><img src="assets/images/team/Ravi-Bhole.webp" alt="Image">
+        <figcaption>
+        <h4><span>Ravi</span> Bhole</h4>
+        <small>Revenue Department Head</small>
+        <ul>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i>LINKEDIN</a></li>
+          <li><a href="#"><i class="fab fa-facebook-f"></i>FACEBOOK</a></li>
+        </ul>
+        </figcaption>
+        </figure>
+      </div>
+      <!-- end col-6 -->
+      <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="500">
+        <figure><img src="assets/images/team/Shreyas-Malve.webp" alt="Image">
+        <figcaption>
+        <h4><span>Shreyas</span> Malve</h4>
+        <small>Senior Sales Manager</small>
+        <ul>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i>LINKEDIN</a></li>
+          <li><a href="#"><i class="fab fa-facebook-f"></i>FACEBOOK</a></li>
+        </ul>
+        </figcaption>
+        </figure>
+      </div>
+      <!-- end col-6 -->
+      <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="600">
+        <figure><img src="assets/images/team/Prajakta-Bhosle.webp" alt="Image">
+        <figcaption>
+        <h4><span>Prajakta</span> Bhosle</h4>
+        <small>HR Manager</small>
+        <ul>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i>LINKEDIN</a></li>
+          <li><a href="#"><i class="fab fa-facebook-f"></i>FACEBOOK</a></li>
+        </ul>
+        </figcaption>
+        </figure>
+      </div>
+      <!-- end col-6 -->
+      <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="700">
+        <figure><img src="assets/images/team/Ankit-Disoja.webp" alt="Image">
+        <figcaption>
+        <h4><span>Ankit</span> Disoja</h4>
+        <small>Sales Manager</small>
+        <ul>
+          <li><a href="#"><i class="fab fa-linkedin-in"></i>LINKEDIN</a></li>
+          <li><a href="#"><i class="fab fa-facebook-f"></i>FACEBOOK</a></li>
+        </ul>
+        </figcaption>
+        </figure>
+      </div>
+      <!-- end col-7 -->
     </div>
-    <!-- end row --> 
+    <!-- end row -->
   </div>
   <!-- end container --> 
 </section>
-<!-- end photo-gallery -->
+<!-- end our-team -->
 <section class="footer-bar">
   <div class="container">
     <div class="inner wow fadeIn">
@@ -453,7 +691,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.05s"> <img src="assets/images/logo/logo.webp" alt="Image" class="logo">
-        <p>By aiming to take the life quality to an upper level with the whole realized Projects, Homepark continues to be the address of luxury.</p>
+        <p>By aiming to take the life quality to an upper level with the whole realized Projects, Sankalp continues to be the address of luxury.</p>
         <div class="select-box dropdown show"> <a class="dropdown-toggle" href="#" role="button" id="language-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span><img src="assets/images/flag-en.svg" alt="Image"> English</span> </a>
           <ul class="dropdown-menu" aria-labelledby="language-select">
             <li><a class="dropdown-item" href="#"><img src="assets/images/flag-ua.svg" alt="Image"> Russian</a></li>
@@ -499,12 +737,12 @@
         <!-- end contact-box --> 
       </div>
       <!-- end col-4 -->
-      <div class="col-12"> <span class="copyright">© 2019 Homepark | Real Estate &amp; Luxury Homes</span> <span class="creation">Site created by <a href="#">Kunal</a></span> </div>
+      <div class="col-12"> <span class="copyright">© 2019 Sankalp | Real Estate &amp; Luxury Homes</span> <span class="creation">Site created by <a href="#">KunalPatil</a></span> </div>
       <!-- end col-12 --> 
     </div>
     <!-- end row --> 
   </div>
-  <!-- end container -->
+  <!-- end container --> 
 </footer>
 <!-- end footer --> 
 
@@ -537,5 +775,16 @@
 <script src="assets/js/isotope.min.js"></script>
 <script src="assets/js/scripts.js"></script>
 
+<!-- Add AOS JS before closing body tag -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    easing: 'ease-in-out',
+    once: true,
+    mirror: false
+  });
+</script>
+
 </body>
-</html>
+</html> 
