@@ -6,35 +6,6 @@ const config = {
   welcomeMessage: "Hello! I'm your AI assistant for Sankalp Landmark. How can I help you today?"
 };
 
-// Predefined responses for common queries
-const responses = {
-  greeting: [
-    "Hello! I'm your AI assistant for Sankalp Landmark. How can I help you today?",
-    "Welcome to Sankalp Landmark! I'm here to assist you with any questions about our properties.",
-    "Hi there! Thank you for reaching out to Sankalp Landmark. How may I assist you today?"
-  ],
-  projects: [
-    "We have several exciting projects across prime locations. Would you like to know more about any specific project?",
-    "Our current projects include luxury apartments, villas, and commercial spaces. Which type of property interests you?",
-    "I can provide detailed information about our ongoing and upcoming projects. What would you like to know?"
-  ],
-  booking: [
-    "I can help you schedule a site visit. What would be your preferred date and time?",
-    "To book a site visit, I'll need your preferred date and contact details. Would you like to proceed?",
-    "Our sales team can arrange a site visit at your convenience. When would you like to visit?"
-  ],
-  location: [
-    "Our properties are strategically located with excellent connectivity. Which area are you interested in?",
-    "We have projects in prime locations with easy access to major landmarks. Would you like specific location details?",
-    "Each of our projects is carefully chosen for its location advantages. Which project's location would you like to know about?"
-  ],
-  default: [
-    "I understand your query. Let me connect you with our sales team for more detailed information.",
-    "That's a great question! I'll make sure our team gets back to you with the information you need.",
-    "Thank you for your interest. Our team will contact you shortly with more details."
-  ]
-};
-
 // DOM Elements
 let chatContainer;
 let chatMessages;
@@ -48,6 +19,7 @@ let quickReplies;
 // Chat State
 let isChatOpen = false;
 let isTyping = false;
+let conversationHistory = [];
 
 // Initialize Chat Bot
 function initChatBot() {
@@ -84,6 +56,12 @@ function initChatBot() {
 
   // Add welcome message
   addMessage(config.welcomeMessage, 'bot');
+  
+  // Save first message to conversation history
+  conversationHistory.push({
+    role: "assistant",
+    content: config.welcomeMessage
+  });
 }
 
 // Create Chat Elements
@@ -92,7 +70,7 @@ function createChatElements() {
     <div class="chat-container">
       <div class="chat-header">
         <div class="chat-header-title">
-          <img src="assets/images/logo/logo.webp" alt="Sankalp Landmark" class="chat-logo">
+          <img src="assets/images/logo/letter.png" alt="Sankalp Landmark" class="chat-logo">
           <div class="chat-title-text">
             <h3>AI Assistant</h3>
             <span class="status">Online</span>
@@ -121,7 +99,6 @@ function createChatElements() {
     </div>
     <button class="floating-chat-btn" id="floatingChatBtn">
       <i class="fas fa-comments"></i>
-      <span>Chat with AI</span>
     </button>
   `;
 
@@ -136,21 +113,37 @@ function toggleChat() {
   
   if (isChatOpen) {
     chatInput.focus();
+    
+    // Add entrance animation
+    chatContainer.classList.add('chat-enter');
+    setTimeout(() => {
+      chatContainer.classList.remove('chat-enter');
+    }, 500);
   }
 }
 
 // Minimize Chat
 function minimizeChat() {
-  chatContainer.classList.remove('active');
-  floatingChatBtn.style.display = 'flex';
-  isChatOpen = false;
+  // Add minimize animation
+  chatContainer.classList.add('chat-minimize');
+  
+  setTimeout(() => {
+    chatContainer.classList.remove('active', 'chat-minimize');
+    floatingChatBtn.style.display = 'flex';
+    isChatOpen = false;
+  }, 300);
 }
 
 // Close Chat
 function closeChat() {
-  chatContainer.classList.remove('active');
-  floatingChatBtn.style.display = 'flex';
-  isChatOpen = false;
+  // Add close animation
+  chatContainer.classList.add('chat-close');
+  
+  setTimeout(() => {
+    chatContainer.classList.remove('active', 'chat-close');
+    floatingChatBtn.style.display = 'flex';
+    isChatOpen = false;
+  }, 300);
 }
 
 // Handle Send Message
@@ -158,6 +151,13 @@ function handleSendMessage() {
   const message = chatInput.value.trim();
   if (message) {
     addMessage(message, 'user');
+    
+    // Add user message to conversation history
+    conversationHistory.push({
+      role: "user",
+      content: message
+    });
+    
     chatInput.value = '';
     processUserMessage(message);
   }
@@ -166,6 +166,13 @@ function handleSendMessage() {
 // Handle Quick Reply
 function handleQuickReply(text) {
   addMessage(text, 'user');
+  
+  // Add quick reply to conversation history
+  conversationHistory.push({
+    role: "user",
+    content: text
+  });
+  
   processUserMessage(text);
 }
 
@@ -183,7 +190,18 @@ function addMessage(text, sender) {
     </div>
   `;
   
+  // Add message appear animation
+  messageDiv.style.opacity = '0';
+  messageDiv.style.transform = 'translateY(20px)';
+  
   chatMessages.appendChild(messageDiv);
+  
+  // Trigger animation
+  setTimeout(() => {
+    messageDiv.style.opacity = '1';
+    messageDiv.style.transform = 'translateY(0)';
+  }, 10);
+  
   scrollToBottom();
 }
 
@@ -212,40 +230,69 @@ function removeTypingIndicator() {
 }
 
 // Process User Message
-function processUserMessage(message) {
+async function processUserMessage(message) {
   showTypingIndicator();
   
-  setTimeout(() => {
-    removeTypingIndicator();
-    const response = getBotResponse(message.toLowerCase());
-    typeMessage(response);
-  }, config.responseDelay);
+  try {
+    const aiResponse = await fetchAIResponse(message);
+    
+    setTimeout(() => {
+      removeTypingIndicator();
+      typeMessage(aiResponse);
+      
+      // Save AI response to conversation history
+      conversationHistory.push({
+        role: "assistant",
+        content: aiResponse
+      });
+    }, config.responseDelay);
+  } catch (error) {
+    console.error("Error getting AI response:", error);
+    
+    setTimeout(() => {
+      removeTypingIndicator();
+      typeMessage("I'm sorry, I'm having trouble connecting right now. Please try again later or contact our team directly.");
+    }, config.responseDelay);
+  }
 }
 
-// Get Bot Response
-function getBotResponse(message) {
-  if (message.match(/^(hi|hello|hey|greetings)/i)) {
-    return getRandomResponse(responses.greeting);
+// Fetch AI Response
+async function fetchAIResponse(message) {
+  try {
+    // You'll need to replace this with your actual AI service endpoint
+    const response = await fetch('https://api.yourai-service.com/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer YOUR_API_KEY'
+      },
+      body: JSON.stringify({
+        messages: conversationHistory,
+        max_tokens: 150,
+        temperature: 0.7,
+        system_prompt: "You are a helpful AI assistant for Sankalp Landmark, a real estate company. Provide friendly, concise responses about their properties, services, and assist users with their real estate inquiries. The company specializes in luxury apartments, villas, and commercial spaces."
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`API responded with status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.response || data.choices[0].message.content;
+    
+  } catch (error) {
+    console.error('Error fetching AI response:', error);
+    
+    // Fallback responses if AI service fails
+    const fallbackResponses = [
+      "I understand your query. Let me connect you with our sales team for more detailed information.",
+      "That's a great question! I'll make sure our team gets back to you with the information you need.",
+      "Thank you for your interest. Our team will contact you shortly with more details."
+    ];
+    
+    return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
   }
-  
-  if (message.match(/project|property|house|apartment|flat/i)) {
-    return getRandomResponse(responses.projects);
-  }
-  
-  if (message.match(/book|visit|schedule|appointment/i)) {
-    return getRandomResponse(responses.booking);
-  }
-  
-  if (message.match(/location|address|where|place/i)) {
-    return getRandomResponse(responses.location);
-  }
-  
-  return getRandomResponse(responses.default);
-}
-
-// Get Random Response
-function getRandomResponse(responses) {
-  return responses[Math.floor(Math.random() * responses.length)];
 }
 
 // Type Message with Animation
@@ -267,8 +314,19 @@ function typeMessage(message) {
   messageContent.appendChild(messageText);
   messageContent.appendChild(messageTime);
   messageDiv.appendChild(messageContent);
+  
+  // Add message appear animation
+  messageDiv.style.opacity = '0';
+  messageDiv.style.transform = 'translateY(20px)';
   chatMessages.appendChild(messageDiv);
   
+  // Trigger appear animation
+  setTimeout(() => {
+    messageDiv.style.opacity = '1';
+    messageDiv.style.transform = 'translateY(0)';
+  }, 10);
+  
+  // Type out the message
   function type() {
     if (index < message.length) {
       messageText.textContent += message.charAt(index);
@@ -287,4 +345,4 @@ function scrollToBottom() {
 }
 
 // Initialize Chat Bot when DOM is loaded
-document.addEventListener('DOMContentLoaded', initChatBot); 
+document.addEventListener('DOMContentLoaded', initChatBot);

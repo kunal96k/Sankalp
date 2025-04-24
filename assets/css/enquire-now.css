@@ -17,15 +17,15 @@
 .section-title {
     text-align: center;
     color: #333;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     font-size: 2.5rem;
 }
 
 .section-description {
     text-align: center;
     color: #666;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    font-size: 1rem;
 }
 
 .enquire-form {
@@ -570,3 +570,11 @@
         font-size: 14px;
     }
 } 
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--secondary-color);
+    font-size: 2.2rem;
+    font-weight: 600;
+}
