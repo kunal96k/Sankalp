@@ -1,9 +1,265 @@
 // Initialize AOS (Animate On Scroll)
 AOS.init({
   duration: 1000,
-  once: true,
-  easing: 'ease-in-out'
+  once: false,
+  mirror: true,
+  offset: 100,
+  easing: 'ease-out-cubic'
 });
+
+// Initialize GSAP
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero Section Animation
+gsap.from('.hero-title', {
+  duration: 1.5,
+  y: 100,
+  opacity: 0,
+  ease: 'power4.out',
+  delay: 0.5
+});
+
+gsap.from('.hero-subtitle', {
+  duration: 1.5,
+  y: 50,
+  opacity: 0,
+  ease: 'power4.out',
+  delay: 0.8
+});
+
+gsap.from('.hero-cta', {
+  duration: 1,
+  y: 30,
+  opacity: 0,
+  ease: 'power4.out',
+  delay: 1.1
+});
+
+// Parallax Effect for Hero Video
+gsap.to('.hero-video', {
+  yPercent: 30,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true
+  }
+});
+
+// Section Title Animations
+gsap.utils.toArray('.section-title').forEach(title => {
+  gsap.from(title, {
+    scrollTrigger: {
+      trigger: title,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    },
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    ease: 'power4.out'
+  });
+});
+
+// Gallery Item Animations
+gsap.utils.toArray('.gallery-item').forEach((item, i) => {
+  gsap.from(item, {
+    scrollTrigger: {
+      trigger: item,
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    },
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    ease: 'power4.out',
+    delay: i * 0.1
+  });
+});
+
+// Floor Plan Tabs Animation
+const floorPlanTabs = document.querySelectorAll('.floor-plan-tab');
+const floorPlanContents = document.querySelectorAll('.floor-plan-content');
+
+floorPlanTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => {
+    // Remove active class from all tabs
+    floorPlanTabs.forEach(t => t.classList.remove('active'));
+    // Add active class to clicked tab
+    tab.classList.add('active');
+    
+    // Hide all contents
+    floorPlanContents.forEach(content => {
+      content.style.display = 'none';
+    });
+    
+    // Show selected content with animation
+    const selectedContent = floorPlanContents[index];
+    selectedContent.style.display = 'block';
+    gsap.from(selectedContent, {
+      duration: 0.5,
+      y: 20,
+      opacity: 0,
+      ease: 'power4.out'
+    });
+  });
+});
+
+// Floor Plan Hotspots Animation
+const hotspots = document.querySelectorAll('.hotspot');
+hotspots.forEach(hotspot => {
+  gsap.from(hotspot, {
+    scale: 0,
+    opacity: 0,
+    duration: 0.5,
+    ease: 'back.out(1.7)',
+    scrollTrigger: {
+      trigger: hotspot,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    }
+  });
+  
+  // Hotspot hover animation
+  hotspot.addEventListener('mouseenter', () => {
+    gsap.to(hotspot, {
+      scale: 1.2,
+      duration: 0.3
+    });
+    
+    const tooltip = hotspot.querySelector('.hotspot-tooltip');
+    if (tooltip) {
+      gsap.to(tooltip, {
+        opacity: 1,
+        y: 0,
+        duration: 0.3
+      });
+    }
+  });
+  
+  hotspot.addEventListener('mouseleave', () => {
+    gsap.to(hotspot, {
+      scale: 1,
+      duration: 0.3
+    });
+    
+    const tooltip = hotspot.querySelector('.hotspot-tooltip');
+    if (tooltip) {
+      gsap.to(tooltip, {
+        opacity: 0,
+        y: 10,
+        duration: 0.3
+      });
+    }
+  });
+});
+
+// Contact Form Animation
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  gsap.from(contactForm, {
+    scrollTrigger: {
+      trigger: contactForm,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    },
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    ease: 'power4.out'
+  });
+}
+
+// Form Input Animation
+const formInputs = document.querySelectorAll('.form-control');
+formInputs.forEach(input => {
+  input.addEventListener('focus', () => {
+    gsap.to(input, {
+      scale: 1.02,
+      duration: 0.3
+    });
+  });
+  
+  input.addEventListener('blur', () => {
+    gsap.to(input, {
+      scale: 1,
+      duration: 0.3
+    });
+  });
+});
+
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+          y: target,
+          offsetY: 80
+        },
+        ease: 'power4.inOut'
+      });
+    }
+  });
+});
+
+// Back to Top Button Animation
+const backToTop = document.querySelector('.back-to-top');
+if (backToTop) {
+  gsap.set(backToTop, { opacity: 0, y: 20 });
+  
+  ScrollTrigger.create({
+    start: 'top -100',
+    onEnter: () => gsap.to(backToTop, { opacity: 1, y: 0, duration: 0.5 }),
+    onLeaveBack: () => gsap.to(backToTop, { opacity: 0, y: 20, duration: 0.5 })
+  });
+  
+  backToTop.addEventListener('click', () => {
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: { y: 0 },
+      ease: 'power4.inOut'
+    });
+  });
+}
+
+// Mobile Menu Toggle Animation
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('active');
+    
+    if (!isOpen) {
+      mobileMenu.classList.add('active');
+      gsap.from(mobileMenu, {
+        duration: 0.5,
+        x: '100%',
+        ease: 'power4.out'
+      });
+      
+      gsap.from(mobileMenu.querySelectorAll('a'), {
+        duration: 0.3,
+        x: 50,
+        opacity: 0,
+        stagger: 0.1,
+        ease: 'power4.out'
+      });
+    } else {
+      gsap.to(mobileMenu, {
+        duration: 0.5,
+        x: '100%',
+        ease: 'power4.in',
+        onComplete: () => mobileMenu.classList.remove('active')
+      });
+    }
+  });
+}
 
 // Initialize Splide Sliders
 document.addEventListener('DOMContentLoaded', function() {
@@ -16,6 +272,9 @@ document.addEventListener('DOMContentLoaded', function() {
       gap: '30px',
       pagination: false,
       arrows: true,
+      autoplay: true,
+      interval: 5000,
+      pauseOnHover: true,
       breakpoints: {
         992: { perPage: 2 },
         768: { perPage: 1 }
@@ -29,6 +288,9 @@ document.addEventListener('DOMContentLoaded', function() {
       type: 'loop',
       perPage: 3,
       gap: '20px',
+      autoplay: true,
+      interval: 4000,
+      pauseOnHover: true,
       breakpoints: {
         992: { perPage: 2 },
         576: { perPage: 1 }
@@ -36,70 +298,80 @@ document.addEventListener('DOMContentLoaded', function() {
     }).mount();
   }
   
-  // Fix Floor Plans Tabs
+  // Fix Floor Plans Tabs with smooth transitions
   const floorPlanTabs = document.querySelectorAll('#floorPlanTab button');
   const floorPlanContents = document.querySelectorAll('#floorPlanTabContent .tab-pane');
   
   floorPlanTabs.forEach((tab, index) => {
     tab.addEventListener('click', function() {
-      // Remove active class from all tabs and contents
-      floorPlanTabs.forEach(t => t.classList.remove('active'));
+      // Remove active class from all tabs and contents with animation
+      floorPlanTabs.forEach(t => {
+        t.classList.remove('active');
+        gsap.to(t, { scale: 1, duration: 0.3 });
+      });
       floorPlanContents.forEach(c => {
         c.classList.remove('show', 'active');
+        gsap.to(c, { opacity: 0, y: 20, duration: 0.3 });
       });
       
-      // Add active class to current tab and content
+      // Add active class to current tab and content with animation
       this.classList.add('active');
+      gsap.to(this, { scale: 1.05, duration: 0.3 });
       floorPlanContents[index].classList.add('show', 'active');
+      gsap.to(floorPlanContents[index], { opacity: 1, y: 0, duration: 0.5, delay: 0.2 });
     });
   });
   
-  // Initialize Floor Plan Hotspots
+  // Enhanced Floor Plan Hotspots
   const hotspots = document.querySelectorAll('.hotspot');
   hotspots.forEach(hotspot => {
     hotspot.addEventListener('mouseenter', function() {
-      this.querySelector('.hotspot-tooltip').style.opacity = '1';
+      gsap.to(this.querySelector('.hotspot-tooltip'), {
+        opacity: 1,
+        y: 0,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+      gsap.to(this.querySelector('.hotspot-dot'), {
+        scale: 1.5,
+        duration: 0.3,
+        ease: 'back.out(1.7)'
+      });
     });
     hotspot.addEventListener('mouseleave', function() {
-      this.querySelector('.hotspot-tooltip').style.opacity = '0';
+      gsap.to(this.querySelector('.hotspot-tooltip'), {
+        opacity: 0,
+        y: 10,
+        duration: 0.3,
+        ease: 'power2.in'
+      });
+      gsap.to(this.querySelector('.hotspot-dot'), {
+        scale: 1,
+        duration: 0.3,
+        ease: 'back.out(1.7)'
+      });
     });
   });
 });
 
-// GSAP Animations
-gsap.registerPlugin(ScrollTrigger);
-
-// Hero Section Animations
-gsap.timeline()
-  .from('.title-line', { 
-    y: 100,
+// Animate sections on scroll
+const sections = document.querySelectorAll('section');
+sections.forEach(section => {
+  gsap.from(section, {
     opacity: 0,
-    stagger: 0.1,
+    y: 50,
     duration: 1,
-    ease: 'power4.out'
-  })
-  .from('.hero-subtitle', {
-    x: -30,
-    opacity: 0,
-    duration: 0.8
-  }, '-=0.5')
-  .from('.hero-cta', {
-    opacity: 0,
-    y: 20,
-    duration: 0.8
-  }, '-=0.3')
-  .from('.hero-scroll', {
-    opacity: 0,
-    duration: 1
-  }, '-=0.5')
-  .from('.hero-social a', {
-    opacity: 0,
-    y: 20,
-    stagger: 0.1,
-    duration: 0.8
-  }, '-=0.3');
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 80%',
+      end: 'top 20%',
+      toggleActions: 'play none none reverse'
+    }
+  });
+});
 
-// Gallery Popup Functionality
+// Enhanced Gallery Popup with GSAP
 const galleryItems = document.querySelectorAll('.gallery-item');
 const popup = document.querySelector('.gallery-popup');
 const popupImg = popup.querySelector('.popup-image');
@@ -110,6 +382,12 @@ galleryItems.forEach((item, index) => {
   item.addEventListener('click', () => {
     currentIndex = index;
     updatePopup();
+    gsap.to(popup, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.5,
+      ease: 'power3.out'
+    });
     popup.classList.add('active');
   });
 });
@@ -117,11 +395,25 @@ galleryItems.forEach((item, index) => {
 function updatePopup() {
   const imgSrc = galleryItems[currentIndex].querySelector('img').src;
   const caption = galleryItems[currentIndex].querySelector('.gallery-caption').textContent;
-  popupImg.src = imgSrc;
-  popupCaption.textContent = caption;
+  
+  gsap.to(popupImg, {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.3,
+    onComplete: () => {
+      popupImg.src = imgSrc;
+      popupCaption.textContent = caption;
+      gsap.to(popupImg, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        ease: 'power3.out'
+      });
+    }
+  });
 }
 
-// Popup Navigation
+// Enhanced Popup Navigation
 document.querySelector('.popup-next').addEventListener('click', () => {
   currentIndex = (currentIndex + 1) % galleryItems.length;
   updatePopup();
@@ -132,15 +424,28 @@ document.querySelector('.popup-prev').addEventListener('click', () => {
   updatePopup();
 });
 
-// Close Popup
+// Close Popup with animation
 popup.querySelector('.popup-close').addEventListener('click', () => {
-  popup.classList.remove('active');
-});
-popup.querySelector('.popup-bg').addEventListener('click', () => {
-  popup.classList.remove('active');
+  gsap.to(popup, {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.5,
+    ease: 'power3.in',
+    onComplete: () => popup.classList.remove('active')
+  });
 });
 
-// Contact Form Handling
+popup.querySelector('.popup-bg').addEventListener('click', () => {
+  gsap.to(popup, {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.5,
+    ease: 'power3.in',
+    onComplete: () => popup.classList.remove('active')
+  });
+});
+
+// Enhanced Contact Form Handling with animations
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', function(e) {
@@ -151,58 +456,125 @@ if (contactForm) {
     // Add your form submission logic here
     console.log('Form submitted:', Object.fromEntries(formData));
     
-    // Show success message
+    // Show success message with animation
     Swal.fire({
       icon: 'success',
       title: 'Message Sent!',
       text: 'We will contact you shortly',
-      confirmButtonColor: '#3c5f9f'
+      confirmButtonColor: '#3c5f9f',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
     });
     
-    this.reset();
+    // Reset form with animation
+    gsap.to(this, {
+      opacity: 0,
+      y: -20,
+      duration: 0.3,
+      onComplete: () => {
+        this.reset();
+        gsap.to(this, {
+          opacity: 1,
+          y: 0,
+          duration: 0.3
+        });
+      }
+    });
   });
 }
 
-// Smooth Scroll for Navigation Links
+// Enhanced Smooth Scroll with GSAP
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+          y: target,
+          offsetY: 80
+        },
+        ease: 'power3.inOut'
       });
     }
   });
 });
 
-// Back to Top Button
+// Enhanced Back to Top Button
 const backToTop = document.querySelector('.back-to-top');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 500) {
+    gsap.to(backToTop, {
+      opacity: 1,
+      y: 0,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
     backToTop.classList.add('show');
   } else {
+    gsap.to(backToTop, {
+      opacity: 0,
+      y: 20,
+      duration: 0.3,
+      ease: 'power2.in'
+    });
     backToTop.classList.remove('show');
   }
 });
 
 backToTop.addEventListener('click', (e) => {
   e.preventDefault();
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
+  gsap.to(window, {
+    duration: 1,
+    scrollTo: {
+      y: 0
+    },
+    ease: 'power3.inOut'
   });
 });
 
-// Mobile Menu Toggle
+// Enhanced Mobile Menu Toggle with GSAP
 const hamburger = document.querySelector('.hamburger');
 const sideNav = document.querySelector('.side-navigation');
 
 if (hamburger && sideNav) {
   hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.contains('active');
+    
+    if (!isOpen) {
+      gsap.to(sideNav, {
+        x: 0,
+        duration: 0.5,
+        ease: 'power3.out'
+      });
+      gsap.to('.side-nav-link', {
+        opacity: 1,
+        x: 0,
+        stagger: 0.1,
+        duration: 0.5,
+        ease: 'power2.out'
+      });
+    } else {
+      gsap.to(sideNav, {
+        x: '100%',
+        duration: 0.5,
+        ease: 'power3.in'
+      });
+      gsap.to('.side-nav-link', {
+        opacity: 0,
+        x: 50,
+        stagger: 0.05,
+        duration: 0.3,
+        ease: 'power2.in'
+      });
+    }
+    
     hamburger.classList.toggle('active');
-    sideNav.classList.toggle('active');
   });
 }
 

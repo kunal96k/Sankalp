@@ -30,7 +30,7 @@
   content: '';
   width: 70px;
   height: 3px;
-  background: #ffc107;
+  background: rgb(159, 128, 84);
   position: absolute;
   left: 0;
   bottom: -10px;
@@ -83,7 +83,7 @@
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #ffc107;
+  color: rgb(159, 128, 84);
 }
 
 .stat-box p {
@@ -199,7 +199,7 @@
 .position-box:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-left: 5px solid #ffc107;
+  border-left: 5px solid rgb(159, 128, 84);
 }
 
 .position-box h4 {
@@ -219,7 +219,7 @@
 .position-box .location i,
 .position-box .department i,
 .position-box .experience i {
-  color: #ffc107;
+  color: rgb(159, 128, 84);
   margin-right: 8px;
 }
 
@@ -229,7 +229,7 @@
 
 .btn-apply {
   display: inline-block;
-  background-color: #ffc107;
+  background-color: rgb(159, 128, 84);
   color: #222;
   padding: 12px 30px;
   border-radius: 50px;
@@ -301,7 +301,7 @@
 .process-box .number {
   width: 60px;
   height: 60px;
-  background-color: #ffc107;
+  background-color: rgb(159, 128, 84);
   color: #222;
   font-size: 24px;
   font-weight: 700;
@@ -364,7 +364,7 @@
 }
 
 .testimonial-box .quote {
-  color: #ffc107;
+  color: rgb(159, 128, 84);
   font-size: 24px;
   margin-bottom: 20px;
 }
@@ -420,7 +420,7 @@
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #ffc107;
+  background-color: rgb(159, 128, 84);
   transform: scale(1.2);
 }
 
@@ -513,5 +513,5 @@
   left: 0;
   width: 50%;
   height: 3px;
-  background: #ffc107;
+  background: rgb(159, 128, 84);
 }
